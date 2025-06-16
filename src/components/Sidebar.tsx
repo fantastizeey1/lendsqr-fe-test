@@ -14,7 +14,7 @@ const Sidebar: React.FC<{ currentPage: string; onPageChange: (page: string) => v
   return (
     <div className="sidebar">
       <div className="sidebar-logo">
-        <img src="https://via.placeholder.com/144x30/39CDCC/FFFFFF?text=lendsqr" alt="Lendsqr" />
+        <img src="/logo.svg " alt="Lendsqr" />
       </div>
       <div className="sidebar-user">
         <span className="user-icon">👤</span>

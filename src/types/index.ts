@@ -40,3 +40,12 @@ export interface User {
     loanRepayment: string;
   };
 }
+
+export interface FilterState {
+  organization: string;
+  username: string;
+  email: string;
+  date: string;
+  phoneNumber: string;
+  status: string;
+}

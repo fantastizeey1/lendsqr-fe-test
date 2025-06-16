@@ -4,16 +4,22 @@ const Header: React.FC = () => {
       <div className="header-left">
         <div className="search-bar">
           <input type="text" placeholder="Search for anything" />
-          <button className="search-btn">🔍</button>
+          <button className="search-btn">
+            <img src="/search.svg" alt="Search" />
+          </button>
         </div>
       </div>
       <div className="header-right">
         <a href="#" className="header-link">Docs</a>
-        <div className="notifications">🔔</div>
+        <div className="notifications">
+          <img src="/notification.svg" alt="Notifications" />
+        </div>
         <div className="user-profile">
-          <img src="https://via.placeholder.com/40x40/CCCCCC/FFFFFF?text=U" alt="User" />
+          <img src="/avatar.svg" alt="User" />
           <span>Adedeji</span>
-          <span className="dropdown-arrow">▼</span>
+          <span className="dropdown-arrow">
+            <img src="/dropdown.svg"   alt="dropdown" />
+          </span>
         </div>
       </div>
     </div>
