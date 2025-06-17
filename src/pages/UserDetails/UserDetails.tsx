@@ -3,6 +3,7 @@ import type { User } from "../../types";
 import "./_userDetails.scss"
 import { useEffect, useState } from "react";
 import { generateMockUsers } from "../../utils/mockUsers";
+import { getStoredUsers } from "../../utils/userStorage";
 
 const UserDetailsPage: React.FC  = () => {
 
@@ -14,15 +15,7 @@ const UserDetailsPage: React.FC  = () => {
     if (!id) return;
 
     // 1. Check localStorage
-    let storedUsers = localStorage.getItem('users');
-    let users: User[] = [];
-
-    if (storedUsers) {
-      users = JSON.parse(storedUsers);
-    } else {
-      users = generateMockUsers(); 
-      localStorage.setItem('users', JSON.stringify(users));
-    }
+    const users = getStoredUsers();
 
     
     const foundUser = users.find(u => u.id === id);

@@ -77,8 +77,8 @@ const streetNames = [
   'Garki District', 'Wuse Zone', 'Maitama District', 'Asokoro District', 'Guzape District', 'Jabi District'
 ];
 
-const emailDomains = ['gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com', 'icloud.com', 'protonmail.com'];
-const companyDomains = ['company.com', 'corp.ng', 'business.com.ng', 'enterprise.ng', 'firm.com', 'group.ng'];
+const emailDomains = ['gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com', 'icloud.com', 'proton.com'];
+const companyDomains = ['company.com', 'corp.ng', 'bus.com.ng', 'ente.ng', 'firm.com', 'group.ng'];
 
 function getRandomItem<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -91,10 +91,10 @@ function generatePhoneNumber(): string {
                    '0901', '0902', '0903', '0904', '0905', '0906', '0907', '0908', '0909',
                    '0915', '0916', '0917', '0918'];
 
-  const prefix = getRandomItem(prefixes).slice(1); // remove the first '0' to match international format
-  const lineNumber = Math.floor(1000000 + Math.random() * 9000000).toString(); // 7 digits
+  const prefix = getRandomItem(prefixes).slice(0); 
+  const lineNumber = Math.floor(1000000 + Math.random() * 9000000).toString(); 
 
-  return `+234${prefix}${lineNumber}`;
+  return `${prefix}${lineNumber}`;
 }
 
 

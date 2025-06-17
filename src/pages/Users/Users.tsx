@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import UsersTable from "../../components/table/Table";
 import { useNavigate } from "react-router-dom";
 import type { User } from "../../types";
 import { generateMockUsers } from "../../utils/mockUsers";
 import StatCard from "../../components/statCard/StatCard";
+import "./_users.scss";
+import { getStoredUsers } from "../../utils/userStorage";
 
 
 
@@ -13,7 +15,7 @@ const Users: React.FC = () => {
   const [filterStatus, setFilterStatus] = useState<string>('');
   const [filterOrg, setFilterOrg] = useState<string>('');
   const navigate = useNavigate();
-  const allUsers = generateMockUsers(); // full User[]
+  const allUsers = getStoredUsers();
 
   const filteredUsers = allUsers.filter(user => {
     return (!filterStatus || user.status === filterStatus) &&

@@ -1,13 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './styles/App.scss';
-import Dashboard from './pages/Dashboard/Dashboard';
+
 import Users from './pages/Users/Users';
 import UserDetails from './pages/UserDetails/UserDetails';
-import Layout from './components/Layout';
+
 import LoginPage from './pages/auth/Login';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { generateMockUsers } from './utils/mockUsers';
+import Layout from './components/layout/Layout';
 
 function App() {
   function LoginRoute() {
@@ -30,7 +31,6 @@ function App() {
 
         {/* Protected Routes */}
         <Route element={<Layout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/users" element={<Users />} />
           <Route path="/users/:id" element={<UserDetails />} />
         </Route>
