@@ -1,14 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-interface User {
-  id: string;
-  orgName: string;
-  userName: string;
-  email: string;
-  phoneNumber: string;
-  dateJoined: string;
-  status: 'Active' | 'Inactive' | 'Pending' | 'Blacklisted';
-}
+import "./_table.scss"
+import { useNavigate } from 'react-router-dom';
+import type { User } from '../../types';
+
+
 
 interface FilterState {
   organization: string;
@@ -35,6 +31,7 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onUserClick }) => {
     phoneNumber: '',
     status: ''
   });
+  const navigate = useNavigate();
 
   const filterRef = useRef<HTMLDivElement>(null);
   const actionRef = useRef<HTMLDivElement>(null);
@@ -69,9 +66,7 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onUserClick }) => {
   };
 
   const handleUserClick = (user: User) => {
-    if (onUserClick) {
-      onUserClick(user);
-    }
+    navigate(`/users/${user.id}`);
   };
 
   const getStatusClass = (status: string) => {
@@ -98,8 +93,12 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onUserClick }) => {
   };
 
   const handleUserAction = (action: string, userId: string) => {
+     if (action === 'view') {
+    navigate(`/users/${userId}`); // ✅ Navigate to user details page
+  } else {
     console.log(`${action} user:`, userId);
-    setActiveAction(null);
+  }
+  setActiveAction(null);
   };
 
   // Get unique organizations for filter dropdown
@@ -309,7 +308,11 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onUserClick }) => {
               <td style={{ position: 'relative' }}>
                 <button
                   className="action-btn"
-                  onClick={(e) => handleActionClick(user.id, e)}
+                  
+                  onClick={(e) =>{
+                    e.stopPropagation(); 
+                    handleActionClick(user.id, e);
+                  }}
                 >
                   ⋮
                 </button>

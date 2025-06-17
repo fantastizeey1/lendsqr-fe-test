@@ -1,0 +1,174 @@
+@use "sass:color";
+
+// Variables
+
+$primary-color: #39cdcc;
+$secondary-color: #213f7d;
+$danger-color: #e4033b;
+$warning-color: #f55f44;
+$success-color: #39cdcc;
+$pending-color: #e9b200;
+$inactive-color: #545f7d;
+$text-primary: #213f7d;
+$text-secondary: #545f7d;
+$background-light: #fbfbfb;
+$border-color: #e6e6e6;
+$white: #ffffff;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin card-shadow {
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+
+.login-page {
+  height: 100vh;
+  width: 100%;
+
+  .login-container {
+    display: flex;
+    height: 100%;
+
+    .login-left {
+      flex: 1;
+      background: $white;
+      padding: 100px 60px;
+      display: flex;
+      flex-direction: column;
+
+      .logo {
+        margin-bottom: 100px;
+
+        img {
+          height: 36px;
+        }
+      }
+
+      .login-illustration {
+        flex: 1;
+        @include flex-center;
+
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+    .login-right {
+      flex: 1;
+      @include flex-center;
+      padding: 40px;
+
+      .login-form-container {
+        width: 100%;
+        max-width: 447px;
+
+        h1 {
+          font-size: 40px;
+          font-weight: 700;
+          color: $text-primary;
+          margin-bottom: 10px;
+        }
+
+        p {
+          font-size: 20px;
+          color: $text-secondary;
+          margin-bottom: 60px;
+        }
+
+        .login-form {
+          .input-group {
+            margin-bottom: 24px;
+            position: relative;
+
+            input {
+              width: 100%;
+              height: 50px;
+              border: 2px solid $border-color;
+              border-radius: 8px;
+              padding: 0 16px;
+              font-size: 14px;
+              color: $text-secondary;
+
+              &:focus {
+                outline: none;
+                border-color: $primary-color;
+              }
+
+              &::placeholder {
+                color: $text-secondary;
+              }
+            }
+
+            &.password-group {
+              .show-password {
+                position: absolute;
+                right: 16px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: none;
+                border: none;
+                color: $primary-color;
+                font-size: 12px;
+                font-weight: 600;
+                cursor: pointer;
+                letter-spacing: 0.1em;
+              }
+            }
+          }
+
+          .error-message {
+            color: $danger-color;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+          }
+
+          .forgot-password {
+            color: $primary-color;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            margin-bottom: 30px;
+            cursor: pointer;
+            display: block;
+          }
+
+          .login-btn {
+            width: 100%;
+            height: 48px;
+            background: $primary-color;
+            color: $white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 0.1em;
+
+            &:hover {
+              background: color.adjust($primary-color, $lightness: -10%);
+            }
+            .login-btn:disabled {
+              background-color: #ccc;
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+    }
+  }
+}

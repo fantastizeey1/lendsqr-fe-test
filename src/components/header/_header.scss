@@ -1,0 +1,118 @@
+@use "sass:color";
+
+// Variables
+
+$primary-color: #39cdcc;
+$secondary-color: #213f7d;
+$danger-color: #e4033b;
+$warning-color: #f55f44;
+$success-color: #39cdcc;
+$pending-color: #e9b200;
+$inactive-color: #545f7d;
+$text-primary: #213f7d;
+$text-secondary: #545f7d;
+$background-light: #fbfbfb;
+$border-color: #e6e6e6;
+$white: #ffffff;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin card-shadow {
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+ .header {
+      height: 100px;
+      background: $white;
+      @include flex-between;
+      padding: 0 30px;
+      @include card-shadow;
+      z-index: 1000;
+
+      .header-left {
+        .search-bar {
+          display: flex;
+          align-items: center;
+
+          input {
+            width: 400px;
+            height: 40px;
+            border: 1px solid rgba(33, 63, 125, 0.2);
+            border-radius: 8px 0 0 8px;
+            padding: 0 20px;
+            font-size: 14px;
+
+            &:focus {
+              outline: none;
+              border-color: $primary-color;
+            }
+
+            &::placeholder {
+              color: $text-secondary;
+            }
+          }
+
+          .search-btn {
+            width: 56px;
+            height: 40px;
+            background: $primary-color;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            color: $white;
+            cursor: pointer;
+            font-size: 14px;
+          }
+        }
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+
+        .header-link {
+          color: $text-primary;
+          text-decoration: underline;
+          font-size: 16px;
+        }
+
+        .notifications {
+          font-size: 26px;
+          cursor: pointer;
+        }
+
+        .user-profile {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          cursor: pointer;
+
+          img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+          }
+
+          span {
+            color: $text-primary;
+            font-weight: 500;
+          }
+
+          .dropdown-arrow {
+            font-size: 12px;
+            color: $primary-color;
+          }
+        }
+      }
+    }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import './_Login.scss';
 
 
 const LoginPage: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
@@ -23,7 +24,7 @@ const LoginPage: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
   try {
     await fakeAuth(cleanedEmail, cleanedPassword);
     setSuccess('Login successful!');
-    navigate('/dashboard');
+    navigate('/users');
 
   } catch {
     setError("Invalid login credentials.");

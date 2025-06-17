@@ -1,0 +1,233 @@
+@use "sass:color";
+
+// Variables
+
+$primary-color: #39cdcc;
+$secondary-color: #213f7d;
+$danger-color: #e4033b;
+$warning-color: #f55f44;
+$success-color: #39cdcc;
+$pending-color: #e9b200;
+$inactive-color: #545f7d;
+$text-primary: #213f7d;
+$text-secondary: #545f7d;
+$background-light: #fbfbfb;
+$border-color: #e6e6e6;
+$white: #ffffff;
+
+// Mixins
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin card-shadow {
+    box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+.users-table {
+    overflow-x: auto;
+    position: relative;
+    height: 640px;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th {
+        padding: 20px 10px;
+        text-align: left;
+        font-size: 12px;
+        font-weight: 600;
+        color: #545f7d;
+        letter-spacing: 0.04em;
+        background: #fff;
+        border-bottom: 1px solid #e8eaed;
+        position: relative;
+    }
+
+    .filter-button {
+        background: none;
+        border: none;
+        margin-left: 10px;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    .filter-button img {
+        width: 16px;
+        height: 16px;
+    }
+
+    td {
+        padding: 20px 10px;
+        font-size: 14px;
+        color: #545f7d;
+        border-bottom: 1px solid #e8eaed;
+    }
+
+    .user-row {
+        cursor: pointer;
+    }
+
+    .user-row:hover {
+        background: #f5f5f5;
+    }
+
+    .status {
+        padding: 6px 12px;
+        border-radius: 100px;
+        font-size: 12px;
+        font-weight: 400;
+        text-align: center;
+        display: inline-block;
+    }
+
+    .status-active {
+        background: rgba(57, 205, 98, 0.06);
+        color: #39cd62;
+    }
+
+    .status-inactive {
+        background: rgba(84, 95, 125, 0.06);
+        color: #545f7d;
+    }
+
+    .status-pending {
+        background: rgba(233, 178, 0, 0.06);
+        color: #e9b200;
+    }
+
+    .status-blacklisted {
+        background: rgba(228, 3, 59, 0.06);
+        color: #e4033b;
+    }
+
+    .action-btn {
+        background: none;
+        border: none;
+        font-size: 16px;
+        color: #545f7d;
+        cursor: pointer;
+        padding: 4px 8px;
+    }
+
+    .action-btn:hover {
+        color: #39cdcc;
+    }
+
+    .filter-popover {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: white;
+        border: 1px solid #e8eaed;
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        width: 270px;
+        padding: 20px;
+    }
+
+    .filter-form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .filter-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .filter-field label {
+        font-size: 14px;
+        font-weight: 500;
+        color: #545f7d;
+    }
+
+    .filter-field input,
+    .filter-field select {
+        padding: 12px;
+        border: 2px solid #e8eaed;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #545f7d;
+    }
+
+    .filter-field input:focus,
+    .filter-field select:focus {
+        outline: none;
+        border-color: #39cdcc;
+    }
+
+    .filter-actions {
+        display: flex;
+        gap: 14px;
+        margin-top: 14px;
+    }
+
+    .reset-btn {
+        flex: 1;
+        padding: 12px;
+        background: transparent;
+        border: 1px solid #545f7d;
+        border-radius: 8px;
+        color: #545f7d;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .filter-btn {
+        flex: 1;
+        padding: 12px;
+        background: #39cdcc;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .action-popover {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        border: 1px solid #e8eaed;
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        min-width: 180px;
+        padding: 10px 0;
+    }
+
+    .action-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 20px;
+        cursor: pointer;
+        font-size: 14px;
+        color: #545f7d;
+    }
+
+    .action-item:hover {
+        background: #f5f5f5;
+    }
+
+    .action-icon {
+        font-size: 16px;
+    }
+}
