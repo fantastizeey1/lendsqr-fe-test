@@ -1,12 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
 import type { User } from "../../types";
-import "./_userDetails.scss"
+import "./_userDetails.scss";
 import { useEffect, useState } from "react";
-import { generateMockUsers } from "../../utils/mockUsers";
 import { getStoredUsers } from "../../utils/userStorage";
 
-const UserDetailsPage: React.FC  = () => {
-
+const UserDetailsPage: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
@@ -14,19 +12,20 @@ const UserDetailsPage: React.FC  = () => {
   useEffect(() => {
     if (!id) return;
 
-    // 1. Check localStorage
     const users = getStoredUsers();
 
-    
-    const foundUser = users.find(u => u.id === id);
+    const foundUser = users.find((u) => u.id === id);
     setUser(foundUser ?? null);
+    console.log("User Details:", foundUser);
   }, [id]);
 
   if (!user) return <div>User not found or loading...</div>;
   return (
     <div className="user-details-page">
       <div className="user-details-header">
-        <button className="back-btn" onClick={() => navigate('/users')}>← Back to Users</button>
+        <button className="back-btn" onClick={() => navigate("/users")}>
+          <img src="/back.svg" alt="back" /> Back to Users
+        </button>
 
         <div className="user-details-actions">
           <h1>User Details</h1>
@@ -40,15 +39,25 @@ const UserDetailsPage: React.FC  = () => {
       <div className="user-profile-overview">
         <div className="profile-header">
           <div className="profile-info">
-            <img src={user.profile.avatar} alt="User Avatar" className="profile-avatar" />
+            <img
+              src={user.profile.avatar}
+              alt="User Avatar"
+              className="profile-avatar"
+            />
             <div className="profile-details">
-              <h2>{user.profile.firstName} {user.profile.lastName}</h2>
+              <h2>
+                {user.profile.firstName} {user.profile.lastName}
+              </h2>
               <p>{user.userName}</p>
             </div>
           </div>
           <div className="user-tier">
             <p>User's Tier</p>
-            <div className="stars">⭐⭐⭐</div>
+            <div className="stars">
+              <img src="/starfull.svg" alt="full Star" />
+              <img src="/star.svg" alt="Star" />
+              <img src="/star.svg" alt="Star" />
+            </div>
           </div>
           <div className="account-balance">
             <h3>{user.accountBalance}</h3>
@@ -73,7 +82,9 @@ const UserDetailsPage: React.FC  = () => {
             <div className="details-grid">
               <div className="detail-item">
                 <label>FULL NAME</label>
-                <p>{user.profile.firstName} {user.profile.lastName}</p>
+                <p>
+                  {user.profile.firstName} {user.profile.lastName}
+                </p>
               </div>
               <div className="detail-item">
                 <label>PHONE NUMBER</label>
@@ -131,7 +142,7 @@ const UserDetailsPage: React.FC  = () => {
               </div>
               <div className="detail-item">
                 <label>MONTHLY INCOME</label>
-                <p>{user.education.monthlyIncome.join(' - ')}</p>
+                <p>{user.education.monthlyIncome.join(" - ")}</p>
               </div>
               <div className="detail-item">
                 <label>LOAN REPAYMENT</label>
@@ -163,7 +174,9 @@ const UserDetailsPage: React.FC  = () => {
             <div className="details-grid">
               <div className="detail-item">
                 <label>FULL NAME</label>
-                <p>{user.guarantor.firstName} {user.guarantor.lastName}</p>
+                <p>
+                  {user.guarantor.firstName} {user.guarantor.lastName}
+                </p>
               </div>
               <div className="detail-item">
                 <label>PHONE NUMBER</label>
