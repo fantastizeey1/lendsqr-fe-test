@@ -3,23 +3,26 @@ import type { User } from "../../types";
 import "./_userDetails.scss";
 import { useEffect, useState } from "react";
 import { getStoredUsers } from "../../utils/userStorage";
+import Loading from "../../components/Loading/Loading";
+import UserNotFound from "../../components/UserNotFound/UserNotFound";
 
 const UserDetailsPage: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!id) return;
 
     const users = getStoredUsers();
-
     const foundUser = users.find((u) => u.id === id);
     setUser(foundUser ?? null);
-    console.log("User Details:", foundUser);
+    setLoading(false);
   }, [id]);
 
-  if (!user) return <div>User not found or loading...</div>;
+  if (loading) return <Loading />;
+  if (!user) return <UserNotFound />;
   return (
     <div className="user-details-page">
       <div className="user-details-header">
