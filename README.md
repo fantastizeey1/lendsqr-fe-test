@@ -6,6 +6,11 @@ A pixel-perfect React + TypeScript admin dashboard application built for the Len
 
 **Live Demo:** [https://enitan-ayoola-lendsqr-fe-test.vercel.app/](https://enitan-ayoola-lendsqr-fe-test.vercel.app/)
 
+### Emaill and password to sign in below
+
+- Email: admin@lendsqr.com
+- Password: password123
+
 ## 📋 Assessment Requirements Compliance
 
 This project fully meets all specified assessment criteria:
