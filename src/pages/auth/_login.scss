@@ -15,6 +15,12 @@ $background-light: #fbfbfb;
 $border-color: #e6e6e6;
 $white: #ffffff;
 
+// Breakpoints
+$large-screen: 1256px;
+$small-screen: 1024px;
+$tablet: 768px;
+$mobile: 480px;
+
 // Mixins
 @mixin flex-center {
   display: flex;
@@ -31,7 +37,6 @@ $white: #ffffff;
 @mixin card-shadow {
   box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
 }
-
 
 .login-page {
   height: 100vh;
@@ -71,6 +76,10 @@ $white: #ffffff;
       flex: 1;
       @include flex-center;
       padding: 40px;
+
+      .logo-mobile {
+        display: none;
+      }
 
       .login-form-container {
         width: 100%;
@@ -165,6 +174,91 @@ $white: #ffffff;
             .login-btn:disabled {
               background-color: #ccc;
               cursor: not-allowed;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Tablet (768px and below)
+@media (max-width: $tablet) {
+  .login-page {
+    .login-container {
+      flex-direction: column;
+
+      .login-left {
+        display: none;
+      }
+
+      .login-right {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 30px 20px;
+        justify-content: start;
+
+        .logo-mobile {
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          width: 100%;
+          height: auto;
+          margin-bottom: 40px;
+
+          img {
+            height: 36px;
+          }
+        }
+
+        .login-form-container {
+          max-width: 100%;
+
+          h1 {
+            font-size: 28px;
+          }
+
+          p {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Mobile (480px and below)
+@media (max-width: $mobile) {
+  .login-page {
+    .login-container {
+      .login-right {
+        padding: 20px 16px;
+
+        .logo-mobile img {
+          height: 32px;
+        }
+
+        .login-form-container {
+          h1 {
+            font-size: 24px;
+          }
+
+          p {
+            font-size: 14px;
+          }
+
+          .login-form {
+            .input-group input {
+              font-size: 13px;
+            }
+
+            .forgot-password {
+              font-size: 11px;
+            }
+
+            .login-btn {
+              font-size: 13px;
             }
           }
         }

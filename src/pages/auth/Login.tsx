@@ -1,36 +1,31 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import './_Login.scss';
-
+import { useNavigate } from "react-router-dom";
+import "./_Login.scss";
 
 const LoginPage: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const navigate = useNavigate();
 
+  const handleLogin = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    setError("");
+    setSuccess("");
 
+    const cleanedEmail = email.trim().toLowerCase();
+    const cleanedPassword = password.trim();
 
- const handleLogin = async (e?: React.FormEvent) => {
-  if (e) e.preventDefault();
-  setError('');
-  setSuccess('');
-
-  const cleanedEmail = email.trim().toLowerCase();
-  const cleanedPassword = password.trim();
-
-  try {
-    await fakeAuth(cleanedEmail, cleanedPassword);
-    setSuccess('Login successful!');
-    navigate('/users');
-
-  } catch {
-    setError("Invalid login credentials.");
-  }
-};
-
+    try {
+      await fakeAuth(cleanedEmail, cleanedPassword);
+      setSuccess("Login successful!");
+      navigate("/users");
+    } catch {
+      setError("Invalid login credentials.");
+    }
+  };
 
   return (
     <div className="login-page">
@@ -45,6 +40,9 @@ const LoginPage: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
         </div>
 
         <div className="login-right">
+          <div className="logo-mobile">
+            <img src="/logo.svg" alt="Lendsqr logo" />
+          </div>
           <div className="login-form-container">
             <h1>Welcome!</h1>
             <p>Enter details to login.</p>
@@ -63,7 +61,7 @@ const LoginPage: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
 
               <div className="input-group password-group">
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -75,7 +73,7 @@ const LoginPage: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
                   className="show-password"
                   onClick={() => setShowPassword(!showPassword)}
                 >
-                  {showPassword ? 'HIDE' : 'SHOW'}
+                  {showPassword ? "HIDE" : "SHOW"}
                 </button>
               </div>
 
@@ -102,24 +100,22 @@ const LoginPage: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
 function fakeAuth(email: string, password: string): Promise<void> {
   const mockUser = {
     email: "admin@lendsqr.com",
-    password: "password123"
+    password: "password123",
   };
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-  console.log("AUTH CHECK:", email, password); 
+      console.log("AUTH CHECK:", email, password);
 
-  if (email === mockUser.email && password === mockUser.password) {
-    console.log("Auth success");
-    resolve();
-  } else {
-    console.log("Auth failed");
-    reject(new Error("Invalid credentials"));
-  }
-}, 700);
-
+      if (email === mockUser.email && password === mockUser.password) {
+        console.log("Auth success");
+        resolve();
+      } else {
+        console.log("Auth failed");
+        reject(new Error("Invalid credentials"));
+      }
+    }, 700);
   });
 }
-
 
 export default LoginPage;
