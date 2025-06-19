@@ -41,7 +41,7 @@ $mobile: 480px;
 .users-table {
   overflow-x: auto;
   position: relative;
-  height: 640px;
+  min-height: 700px;
   min-width: 1000px;
 
   table {
@@ -238,6 +238,36 @@ $mobile: 480px;
     font-size: 16px;
   }
 }
+// large screen (1256px and below) Breakpoint
+@media (max-width: $large-screen) {
+  .users-table {
+    height: auto;
+    min-width: 100%;
+
+    thead {
+      tr {
+        th {
+          text-align: left;
+          padding: 16px 10px;
+          font-size: 12px;
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+          padding: 16px 10px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  td {
+    padding: 16px 8px;
+    font-size: 12px;
+  }
+}
 // small-screen (1024px) Breakpoint
 @media (max-width: $small-screen) {
   .users-table {
@@ -270,7 +300,7 @@ $mobile: 480px;
 }
 
 // tablet (768px) Breakpoint
-/* 🔽 Tablet (768px and below) */
+
 @media (max-width: $tablet) {
   .users-table {
     overflow-x: auto;
@@ -289,7 +319,7 @@ $mobile: 480px;
   }
 }
 
-/* 🔽 Mobile (480px and below) */
+// mobile (480px) Breakpoint
 @media (max-width: $mobile) {
   .users-table {
     overflow-x: auto;

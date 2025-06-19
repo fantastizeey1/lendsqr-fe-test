@@ -1,10 +1,17 @@
 import "./_header.scss";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onToggleSidebar: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
   return (
     <div className="header">
       <div className="header-left">
         <div className="logo-container">
+          <button className="hamburger" onClick={onToggleSidebar}>
+            ☰
+          </button>
           <img src="/logo.svg" alt="Logo" />
         </div>
         <div className="search-bar">

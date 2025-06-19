@@ -132,6 +132,95 @@ $mobile: 480px;
     }
   }
 }
+@media (max-width: $large-screen) {
+  .header {
+    height: 70px;
+    background: $white;
+    @include flex-between;
+    padding: 0 10px;
+    @include card-shadow;
+    z-index: 1000;
+
+    .header-left {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      .logo-container {
+        width: 100px;
+        height: 70px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        .hamburger {
+          background: none;
+          border: none;
+          font-size: 24px;
+          cursor: pointer;
+        }
+        img {
+          width: 100px;
+          height: 70px;
+        }
+      }
+      .search-bar {
+        display: flex;
+        align-items: center;
+        margin-left: 100px;
+
+        input {
+          width: 250px;
+          height: 40px;
+          padding: 0 10px;
+          font-size: 12px;
+        }
+
+        .search-btn {
+          width: 56px;
+          height: 40px;
+          background: $primary-color;
+          border: none;
+          border-radius: 0 8px 8px 0;
+          color: $white;
+          cursor: pointer;
+          font-size: 14px;
+        }
+      }
+    }
+
+    .header-right {
+      gap: 30px;
+
+      .header-link {
+        display: none;
+      }
+
+      .notifications {
+        img {
+          width: 30px;
+          height: 30px;
+        }
+      }
+
+      .user-profile {
+        img {
+          width: 40px;
+          height: 40px;
+        }
+
+        span {
+          font-size: 12px;
+        }
+
+        .dropdown-arrow {
+          img {
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+    }
+  }
+}
 
 @media (max-width: $tablet) {
   .header {
@@ -150,7 +239,14 @@ $mobile: 480px;
         width: 100px;
         height: 70px;
         display: flex;
+        gap: 10px;
         align-items: center;
+        .hamburger {
+          background: none;
+          border: none;
+          font-size: 24px;
+          cursor: pointer;
+        }
         img {
           width: 100px;
           height: 70px;
@@ -159,6 +255,7 @@ $mobile: 480px;
       .search-bar {
         display: flex;
         align-items: center;
+        margin-left: 70px;
 
         input {
           width: 200px;
@@ -241,18 +338,18 @@ $mobile: 480px;
       .search-bar {
         display: flex;
         align-items: center;
-        margin-left: 10px;
+        margin-left: 40px;
 
         input {
-          width: 150px;
-          height: 40px;
+          width: 100px;
+          height: 30px;
           padding: 0 10px;
-          font-size: 12px;
+          font-size: 10px;
         }
 
         .search-btn {
           width: 26px;
-          height: 40px;
+          height: 30px;
           background: $primary-color;
           border: none;
           border-radius: 0 8px 8px 0;

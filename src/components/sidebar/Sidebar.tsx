@@ -3,7 +3,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import "./_sidebar.scss";
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -81,7 +86,11 @@ const Sidebar: React.FC = () => {
   ];
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${isOpen ? "open" : ""}`}>
+      <button className="sidebar-close-btn" onClick={onClose}>
+        &times;
+      </button>
+
       <div className="sidebar-logo">
         <img src="/logo.svg" alt="Lendsqr" />
       </div>

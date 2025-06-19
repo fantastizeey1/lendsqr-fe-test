@@ -192,8 +192,9 @@ $mobile: 480px;
 
         .pagination-info {
           margin-bottom: 12px;
-          font-size: 10px;
+          font-size: 9px;
           width: 50%;
+          text-wrap: nowrap;
         }
 
         .pagination-controls {

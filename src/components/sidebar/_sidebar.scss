@@ -44,6 +44,8 @@ $mobile: 480px;
   @include card-shadow;
   padding: 30px 0;
   overflow-y: auto;
+  transition: transform 0.3s ease;
+  transform: translateX(0);
 
   .sidebar-logo {
     padding: 0 30px;
@@ -198,6 +200,148 @@ $mobile: 480px;
 
         .menu-icon {
           font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $small-screen) {
+  .sidebar {
+    max-width: 200px;
+    padding: 15px 0;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+
+    &.open {
+      transform: translateX(0);
+    }
+
+    .sidebar-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 20px;
+      color: $text-primary;
+      cursor: pointer;
+      font-size: 30px;
+      border: none;
+      background: none;
+    }
+
+    .sidebar-logo {
+      padding: 0 15px;
+      margin-bottom: 20px;
+
+      img {
+        height: 20px;
+      }
+    }
+
+    .sidebar-user {
+      padding: 0 15px;
+      margin-bottom: 20px;
+      font-size: 12px;
+
+      .user-icon {
+        font-size: 12px;
+        margin-right: 6px;
+      }
+      span {
+        font-size: 12px;
+      }
+
+      .dropdown-arrow {
+        font-size: 8px;
+        margin-left: 6px;
+      }
+    }
+
+    .sidebar-menu {
+      .dashboard-item {
+        padding: 6px 15px;
+        font-size: 12px;
+
+        .menu-icon {
+          font-size: 12px;
+        }
+      }
+
+      .menu-section h4 {
+        font-size: 12px;
+        padding: 0 15px;
+        .menu-item {
+          padding: 6px 15px;
+          font-size: 10px;
+
+          .menu-icon {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Tablet and mobile screens
+@media (max-width: $tablet) {
+  .sidebar {
+    max-width: 200px;
+    padding: 10px 0;
+
+    .sidebar-logo {
+      padding: 0 20px;
+      margin-bottom: 30px;
+
+      img {
+        height: 25px;
+      }
+    }
+
+    .sidebar-user {
+      padding: 0 20px;
+      margin-bottom: 30px;
+      font-size: 12px;
+
+      .user-icon {
+        font-size: 12px;
+        margin-right: 8px;
+      }
+      span {
+        font-size: 12px;
+      }
+
+      .dropdown-arrow {
+        font-size: 10px;
+        margin-left: 8px;
+      }
+    }
+
+    .sidebar-menu {
+      .dashboard-item {
+        padding: 8px 20px;
+        font-size: 12px;
+
+        .menu-icon {
+          font-size: 12px;
+        }
+      }
+
+      .menu-section {
+        h4 {
+          font-size: 11px;
+          padding: 0 20px;
+        }
+        .menu-item {
+          padding: 8px 20px;
+          font-size: 12px;
+
+          .menu-icon {
+            font-size: 12px;
+          }
         }
       }
     }
