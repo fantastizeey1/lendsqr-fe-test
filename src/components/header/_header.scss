@@ -222,7 +222,7 @@ $mobile: 480px;
   }
 }
 
-@media (max-width: $large-screen) {
+@media (max-width: $small-screen) {
   .header {
     .header-left {
       .logo-container {
