@@ -1,7 +1,6 @@
 @use "sass:color";
 
 // Variables
-
 $primary-color: #39cdcc;
 $secondary-color: #213f7d;
 $danger-color: #e4033b;
@@ -14,6 +13,12 @@ $text-secondary: #545f7d;
 $background-light: #fbfbfb;
 $border-color: #e6e6e6;
 $white: #ffffff;
+
+// Breakpoints
+$large-screen: 1256px;
+$small-screen: 1024px;
+$tablet: 768px;
+$mobile: 480px;
 
 // Mixins
 @mixin flex-center {
@@ -32,7 +37,7 @@ $white: #ffffff;
   box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
 }
 
-// User Details Page
+// User Details
 .user-details-page {
   padding: 60px;
 
@@ -48,6 +53,7 @@ $white: #ffffff;
       margin-bottom: 26px;
       display: flex;
       align-items: center;
+
       img {
         margin-right: 4px;
       }
@@ -237,7 +243,7 @@ $white: #ffffff;
 
         .details-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          grid-template-columns: repeat(4, 1fr);
           gap: 30px;
           padding-bottom: 30px;
           border-bottom: 1px solid rgba(33, 63, 125, 0.1);
@@ -256,6 +262,363 @@ $white: #ffffff;
               font-size: 16px;
               color: $text-secondary;
               font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Large Screen (1256px) Breakpoint
+@media (max-width: $large-screen) {
+  .user-details-page {
+    padding: 40px 30px;
+
+    .user-details-tabs {
+      .tab-nav {
+        .tab {
+          padding: 20px 30px;
+          font-size: 14px;
+        }
+      }
+
+      .tab-content {
+        padding: 30px;
+
+        .details-section {
+          margin-bottom: 30px;
+
+          .details-grid {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+
+            .detail-item {
+              label {
+                font-size: 12px;
+              }
+
+              p {
+                font-size: 13px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Small Screen (1024px) Breakpoint
+@media (max-width: $small-screen) {
+  .user-details-page {
+    padding: 40px 30px;
+
+    .user-profile-overview {
+      .profile-header {
+        .profile-info {
+          .profile-details {
+            h2 {
+              font-size: 22px;
+            }
+
+            p {
+              font-size: 14px;
+            }
+          }
+        }
+
+        .user-tier {
+          p {
+            font-size: 14px;
+          }
+
+          .stars {
+            font-size: 16px;
+            img {
+              margin-right: 4px;
+            }
+          }
+        }
+
+        .account-balance {
+          padding-left: 30px;
+
+          h3 {
+            font-size: 22px;
+
+            margin-bottom: 8px;
+          }
+
+          p {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .user-details-tabs {
+      .tab-nav {
+        .tab {
+          padding: 20px 40px;
+          font-size: 14px;
+        }
+      }
+
+      .tab-content {
+        padding: 30px;
+
+        .details-section {
+          margin-bottom: 30px;
+
+          h3 {
+            font-size: 16px;
+          }
+
+          .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 20px;
+
+            .detail-item {
+              label {
+                font-size: 12px;
+              }
+
+              p {
+                font-size: 13px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// Tablet (1024px) Breakpoint
+// Mobile (768px) Breakpoint
+@media (max-width: $tablet) {
+  .user-details-page {
+    padding: 40px 30px;
+
+    .user-details-header {
+      .user-details-actions {
+        @include flex-between;
+        align-items: flex-start;
+
+        h1 {
+          font-size: 24px;
+          color: $text-primary;
+        }
+      }
+    }
+
+    .user-profile-overview {
+      .profile-header {
+        .account-balance {
+          padding-left: 30px;
+
+          h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+          }
+
+          p {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .user-details-tabs {
+      .tab-nav {
+        .tab {
+          padding: 20px 25px;
+          font-size: 12px;
+        }
+      }
+
+      .tab-content {
+        padding: 30px;
+
+        .details-section {
+          margin-bottom: 30px;
+
+          h3 {
+            font-size: 16px;
+            margin-bottom: 30px;
+          }
+
+          .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 20px;
+            padding-bottom: 30px;
+
+            .detail-item {
+              label {
+                font-size: 12px;
+                margin-bottom: 8px;
+              }
+
+              p {
+                font-size: 13px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Small Mobile (480px) Breakpoint
+@media (max-width: $mobile) {
+  .user-details-page {
+    padding: 20px 10px;
+
+    .user-details-header {
+      margin-bottom: 20px;
+
+      .back-btn {
+        font-size: 12px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+
+        img {
+          margin-right: 4px;
+          width: 14px;
+          height: 14px;
+        }
+      }
+
+      .user-details-actions {
+        align-items: flex-start;
+
+        h1 {
+          font-size: 18px;
+        }
+
+        .action-buttons {
+          display: flex;
+          gap: 20px;
+
+          button {
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 10px;
+          }
+        }
+      }
+    }
+
+    .user-profile-overview {
+      border-radius: 4px;
+      padding: 20px 10px;
+      margin-bottom: 30px;
+
+      .profile-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 10px;
+
+        .profile-info {
+          display: flex;
+          align-items: center;
+          justify-content: start;
+          gap: 10px;
+
+          .profile-avatar {
+            width: 60px;
+            height: 60px;
+          }
+
+          .profile-details {
+            h2 {
+              font-size: 12px;
+              margin-bottom: 8px;
+            }
+
+            p {
+              font-size: 10px;
+            }
+          }
+        }
+
+        .user-tier {
+          text-align: center;
+
+          p {
+            font-size: 10px;
+            margin-bottom: 8px;
+          }
+
+          .stars {
+            display: flex;
+            align-items: center;
+            img {
+              margin-right: 4px;
+            }
+          }
+        }
+
+        .account-balance {
+          padding-left: 10px;
+
+          h3 {
+            font-size: 14px;
+            margin-bottom: 8px;
+          }
+
+          p {
+            font-size: 10px;
+            text-wrap: wrap;
+          }
+        }
+      }
+    }
+
+    .user-details-tabs {
+      .tab-nav {
+        .tab {
+          padding: 10px 10px;
+          font-size: 8px;
+        }
+      }
+
+      .tab-content {
+        padding: 10px;
+
+        .details-section {
+          margin-bottom: 10px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          h3 {
+            font-size: 12px;
+
+            margin-bottom: 15px;
+          }
+
+          .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            padding-bottom: 20px;
+
+            .detail-item {
+              label {
+                font-size: 10px;
+                margin-bottom: 4px;
+              }
+
+              p {
+                font-size: 10px;
+              }
             }
           }
         }
