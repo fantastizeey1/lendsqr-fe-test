@@ -624,14 +624,20 @@ function generateUserName(
   index: number
 ): string {
   const patterns = [
-    `${firstName.toLowerCase()}${lastName.toLowerCase()}`,
-    `${firstName.toLowerCase()}${lastName.toLowerCase()}${Math.floor(
+    `${firstName.toLowerCase()}${lastName.toLowerCase()}${index}`,
+    `${firstName.toLowerCase()}${lastName.toLowerCase()}${index}${Math.floor(
       Math.random() * 99
     )}`,
-    `${firstName.toLowerCase().substring(0, 3)}${lastName.toLowerCase()}`,
-    `${firstName.toLowerCase()}${lastName.toLowerCase().substring(0, 3)}`,
-    `${firstName.toLowerCase()}_${lastName.toLowerCase()}`,
-    `${firstName.toLowerCase().charAt(0)}${lastName.toLowerCase()}${Math.floor(
+    `${firstName
+      .toLowerCase()
+      .substring(0, 3)}${lastName.toLowerCase()}${index}`,
+    `${firstName.toLowerCase()}${lastName
+      .toLowerCase()
+      .substring(0, 3)}${index}`,
+    `${firstName.toLowerCase()}_${lastName.toLowerCase()}${index}`,
+    `${firstName
+      .toLowerCase()
+      .charAt(0)}${lastName.toLowerCase()}${index}${Math.floor(
       Math.random() * 999
     )}`,
   ];

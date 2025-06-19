@@ -7,23 +7,20 @@ const LoginPage: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     setError("");
-    setSuccess("");
-
     const cleanedEmail = email.trim().toLowerCase();
     const cleanedPassword = password.trim();
 
     try {
       await fakeAuth(cleanedEmail, cleanedPassword);
-      setSuccess("Login successful!");
+      onLogin();
       navigate("/users");
-    } catch {
-      setError("Invalid login credentials.");
+    } catch (err: any) {
+      setError(err.message || "Login failed");
     }
   };
 

@@ -1,10 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from "react";
 
-import "./_table.scss"
-import { useNavigate } from 'react-router-dom';
-import type { User } from '../../types';
-
-
+import "./_table.scss";
+import { useNavigate } from "react-router-dom";
+import type { User } from "../../types";
 
 interface FilterState {
   organization: string;
@@ -15,21 +13,21 @@ interface FilterState {
   status: string;
 }
 
-interface UsersTableProps {
+type UsersTableProps = {
   users: User[];
-  onUserClick?: (user: User) => void;
-}
+  onUserClick: (user: User) => void;
+};
 
-const UsersTable: React.FC<UsersTableProps> = ({ users, onUserClick }) => {
+const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [activeAction, setActiveAction] = useState<string | null>(null);
   const [filters, setFilters] = useState<FilterState>({
-    organization: '',
-    username: '',
-    email: '',
-    date: '',
-    phoneNumber: '',
-    status: ''
+    organization: "",
+    username: "",
+    email: "",
+    date: "",
+    phoneNumber: "",
+    status: "",
   });
   const navigate = useNavigate();
 
@@ -39,17 +37,23 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onUserClick }) => {
   // Close popovers when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (filterRef.current && !filterRef.current.contains(event.target as Node)) {
+      if (
+        filterRef.current &&
+        !filterRef.current.contains(event.target as Node)
+      ) {
         setActiveFilter(null);
       }
-      if (actionRef.current && !actionRef.current.contains(event.target as Node)) {
+      if (
+        actionRef.current &&
+        !actionRef.current.contains(event.target as Node)
+      ) {
         setActiveAction(null);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -74,48 +78,52 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onUserClick }) => {
   };
 
   const handleFilterChange = (field: keyof FilterState, value: string) => {
-    setFilters(prev => ({
+    setFilters((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
   const resetFilters = () => {
     setFilters({
-      organization: '',
-      username: '',
-      email: '',
-      date: '',
-      phoneNumber: '',
-      status: ''
+      organization: "",
+      username: "",
+      email: "",
+      date: "",
+      phoneNumber: "",
+      status: "",
     });
     setActiveFilter(null);
   };
 
   const handleUserAction = (action: string, userId: string) => {
-     if (action === 'view') {
-    navigate(`/users/${userId}`); // ✅ Navigate to user details page
-  } else {
-    console.log(`${action} user:`, userId);
-  }
-  setActiveAction(null);
+    if (action === "view") {
+      navigate(`/users/${userId}`); // ✅ Navigate to user details page
+    } else {
+      console.log(`${action} user:`, userId);
+    }
+    setActiveAction(null);
   };
 
   // Get unique organizations for filter dropdown
-  const uniqueOrganizations = Array.from(new Set(users.map(user => user.orgName)));
+  const uniqueOrganizations = Array.from(
+    new Set(users.map((user) => user.orgName))
+  );
 
-  const FilterPopover = ({ filterType }: { filterType: string }) => (
+  const FilterPopover = () => (
     <div className="filter-popover" ref={filterRef}>
       <div className="filter-form">
         <div className="filter-field">
           <label>Organization</label>
           <select
             value={filters.organization}
-            onChange={(e) => handleFilterChange('organization', e.target.value)}
+            onChange={(e) => handleFilterChange("organization", e.target.value)}
           >
             <option value="">Select</option>
-            {uniqueOrganizations.map(org => (
-              <option key={org} value={org}>{org}</option>
+            {uniqueOrganizations.map((org) => (
+              <option key={org} value={org}>
+                {org}
+              </option>
             ))}
           </select>
         </div>
@@ -126,7 +134,7 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onUserClick }) => {
             type="text"
             placeholder="User"
             value={filters.username}
-            onChange={(e) => handleFilterChange('username', e.target.value)}
+            onChange={(e) => handleFilterChange("username", e.target.value)}
           />
         </div>
 
@@ -136,7 +144,7 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onUserClick }) => {
             type="email"
             placeholder="Email"
             value={filters.email}
-            onChange={(e) => handleFilterChange('email', e.target.value)}
+            onChange={(e) => handleFilterChange("email", e.target.value)}
           />
         </div>
 
@@ -145,7 +153,7 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onUserClick }) => {
           <input
             type="date"
             value={filters.date}
-            onChange={(e) => handleFilterChange('date', e.target.value)}
+            onChange={(e) => handleFilterChange("date", e.target.value)}
           />
         </div>
 
@@ -155,7 +163,7 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onUserClick }) => {
             type="text"
             placeholder="Phone Number"
             value={filters.phoneNumber}
-            onChange={(e) => handleFilterChange('phoneNumber', e.target.value)}
+            onChange={(e) => handleFilterChange("phoneNumber", e.target.value)}
           />
         </div>
 
@@ -163,7 +171,7 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onUserClick }) => {
           <label>Status</label>
           <select
             value={filters.status}
-            onChange={(e) => handleFilterChange('status', e.target.value)}
+            onChange={(e) => handleFilterChange("status", e.target.value)}
           >
             <option value="">Select</option>
             <option value="Active">Active</option>
@@ -187,32 +195,46 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onUserClick }) => {
 
   const ActionPopover = ({ userId }: { userId: string }) => (
     <div className="action-popover" ref={actionRef}>
-      <div className="action-item" onClick={() => handleUserAction('view', userId)}>
+      <div
+        className="action-item"
+        onClick={() => handleUserAction("view", userId)}
+      >
         <span className="action-icon">👁</span>
         View Details
       </div>
-      <div className="action-item" onClick={() => handleUserAction('blacklist', userId)}>
+      <div
+        className="action-item"
+        onClick={() => handleUserAction("blacklist", userId)}
+      >
         <span className="action-icon">👤</span>
         Blacklist User
       </div>
-      <div className="action-item" onClick={() => handleUserAction('activate', userId)}>
+      <div
+        className="action-item"
+        onClick={() => handleUserAction("activate", userId)}
+      >
         <span className="action-icon">👤</span>
         Activate User
       </div>
     </div>
   );
 
-  const filteredUsers = users.filter(user => {
+  const filteredUsers = users.filter((user) => {
     return (
-      (filters.organization === '' || user.orgName.toLowerCase().includes(filters.organization.toLowerCase())) &&
-      (filters.username === '' || user.userName.toLowerCase().includes(filters.username.toLowerCase())) &&
-      (filters.email === '' || user.email.toLowerCase().includes(filters.email.toLowerCase())) &&
-      (filters.phoneNumber === '' || user.phoneNumber.includes(filters.phoneNumber)) &&
-      (filters.date === '' || user.dateJoined.startsWith(filters.date)) &&
-      (filters.status === '' || user.status === filters.status)
+      (filters.organization === "" ||
+        user.orgName
+          .toLowerCase()
+          .includes(filters.organization.toLowerCase())) &&
+      (filters.username === "" ||
+        user.userName.toLowerCase().includes(filters.username.toLowerCase())) &&
+      (filters.email === "" ||
+        user.email.toLowerCase().includes(filters.email.toLowerCase())) &&
+      (filters.phoneNumber === "" ||
+        user.phoneNumber.includes(filters.phoneNumber)) &&
+      (filters.date === "" || user.dateJoined.startsWith(filters.date)) &&
+      (filters.status === "" || user.status === filters.status)
     );
   });
-
 
   return (
     <div className="users-table">
@@ -223,80 +245,84 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onUserClick }) => {
               ORGANIZATION
               <button
                 className="filter-button"
-                onClick={(e) => handleFilterClick('organization', e)}
+                onClick={(e) => handleFilterClick("organization", e)}
               >
                 <img src="/filter-button.svg" alt="filter" />
               </button>
-              {activeFilter === 'organization' && <FilterPopover filterType="organization" />}
+              {activeFilter === "organization" && <FilterPopover />}
             </th>
             <th>
               USERNAME
               <button
                 className="filter-button"
-                onClick={(e) => handleFilterClick('username', e)}
+                onClick={(e) => handleFilterClick("username", e)}
               >
                 <img src="/filter-button.svg" alt="filter" />
               </button>
-              {activeFilter === 'username' && <FilterPopover filterType="username" />}
+              {activeFilter === "username" && <FilterPopover />}
             </th>
             <th>
               EMAIL
               <button
                 className="filter-button"
-                onClick={(e) => handleFilterClick('email', e)}
+                onClick={(e) => handleFilterClick("email", e)}
               >
                 <img src="/filter-button.svg" alt="filter" />
               </button>
-              {activeFilter === 'email' && <FilterPopover filterType="email" />}
+              {activeFilter === "email" && <FilterPopover />}
             </th>
             <th>
               PHONE NUMBER
               <button
                 className="filter-button"
-                onClick={(e) => handleFilterClick('phone', e)}
+                onClick={(e) => handleFilterClick("phone", e)}
               >
                 <img src="/filter-button.svg" alt="filter" />
               </button>
-              {activeFilter === 'phone' && <FilterPopover filterType="phone" />}
+              {activeFilter === "phone" && <FilterPopover />}
             </th>
             <th>
               DATE JOINED
               <button
                 className="filter-button"
-                onClick={(e) => handleFilterClick('date', e)}
+                onClick={(e) => handleFilterClick("date", e)}
               >
                 <img src="/filter-button.svg" alt="filter" />
               </button>
-              {activeFilter === 'date' && <FilterPopover filterType="date" />}
+              {activeFilter === "date" && <FilterPopover />}
             </th>
             <th>
               STATUS
               <button
                 className="filter-button"
-                onClick={(e) => handleFilterClick('status', e)}
+                onClick={(e) => handleFilterClick("status", e)}
               >
                 <img src="/filter-button.svg" alt="filter" />
               </button>
-              {activeFilter === 'status' && <FilterPopover filterType="status" />}
+              {activeFilter === "status" && <FilterPopover />}
             </th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          {filteredUsers.map(user => (
-            <tr key={user.id} onClick={() => handleUserClick(user)} className="user-row">
+          {filteredUsers.map((user) => (
+            <tr
+              key={user.id}
+              onClick={() => handleUserClick(user)}
+              className="user-row"
+            >
               <td>{user.orgName}</td>
               <td>{user.userName}</td>
               <td>{user.email}</td>
               <td>{user.phoneNumber}</td>
               <td>
-                {new Date(user.dateJoined).toLocaleString('en-US', {
-                  month: 'short',  
-                  day: '2-digit',    
-                  year: 'numeric',   
-                  hour: '2-digit',   
-                  minute: '2-digit', 
-                  hour12: true      
+                {new Date(user.dateJoined).toLocaleString("en-US", {
+                  month: "short",
+                  day: "2-digit",
+                  year: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  hour12: true,
                 })}
               </td>
 
@@ -305,12 +331,11 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onUserClick }) => {
                   {user.status}
                 </span>
               </td>
-              <td style={{ position: 'relative' }}>
+              <td style={{ position: "relative" }}>
                 <button
                   className="action-btn"
-                  
-                  onClick={(e) =>{
-                    e.stopPropagation(); 
+                  onClick={(e) => {
+                    e.stopPropagation();
                     handleActionClick(user.id, e);
                   }}
                 >
@@ -321,7 +346,6 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onUserClick }) => {
             </tr>
           ))}
         </tbody>
-
       </table>
     </div>
   );

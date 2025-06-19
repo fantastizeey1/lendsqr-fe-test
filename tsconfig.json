@@ -4,7 +4,7 @@
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
   ],
-   /* Path mapping for clean imports */
+  "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
@@ -17,5 +17,6 @@
       "@hooks/*": ["src/hooks/*"],
       "@data/*": ["src/data/*"],
       "@assets/*": ["src/assets/*"]
-    },
+    }
+  }
 }
