@@ -15,6 +15,12 @@ $background-light: #fbfbfb;
 $border-color: #e6e6e6;
 $white: #ffffff;
 
+// Breakpoints
+$large-screen: 1256px;
+$small-screen: 1024px;
+$tablet: 768px;
+$mobile: 480px;
+
 // Mixins
 @mixin flex-center {
   display: flex;
@@ -43,7 +49,7 @@ $white: #ffffff;
 
   .users-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     margin-bottom: 40px;
   }
@@ -53,10 +59,6 @@ $white: #ffffff;
     border-radius: 4px;
     @include card-shadow;
     overflow: hidden;
-
-    
-
-   
 
     .pagination {
       @include flex-between;
@@ -96,6 +98,116 @@ $white: #ffffff;
         span {
           font-size: 14px;
           color: $text-secondary;
+        }
+      }
+    }
+  }
+}
+
+// small-screen (1024px) Breakpoint
+@media (max-width: $small-screen) {
+  .users-page {
+    padding: 40px 20px;
+
+    h1 {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .users-stats {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .users-table-container {
+      .pagination {
+        padding: 15px 20px;
+
+        .pagination-info {
+          font-size: 12px;
+        }
+
+        .pagination-controls {
+          gap: 10px;
+
+          button {
+            padding: 6px 12px;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Tablet (768px) Breakpoint
+@media (max-width: $tablet) {
+  .users-page {
+    padding: 30px 15px;
+
+    .users-stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .users-table-container {
+      .pagination {
+        flex-direction: row;
+        width: 100%;
+
+        .pagination-info {
+          margin-bottom: 12px;
+        }
+
+        .pagination-controls {
+          flex-direction: row;
+          justify-content: end;
+          gap: 8px;
+          width: 50%;
+
+          button {
+            width: 30%;
+          }
+        }
+      }
+    }
+  }
+}
+
+// mobile (480px) Breakpoint
+@media (max-width: $mobile) {
+  .users-page {
+    padding: 20px 10px;
+
+    .users-stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .users-table-container {
+      .pagination {
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+        padding: 20px 10px;
+        width: 100%;
+        justify-content: start;
+
+        .pagination-info {
+          margin-bottom: 12px;
+          font-size: 10px;
+          width: 50%;
+        }
+
+        .pagination-controls {
+          flex-direction: row;
+          justify-content: end;
+          gap: 4px;
+          width: 100%;
+          span {
+            font-size: 8px;
+          }
+
+          button {
+            width: 80px;
+          }
         }
       }
     }

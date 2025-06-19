@@ -1,9 +1,12 @@
-import "./_header.scss"
+import "./_header.scss";
 
 const Header: React.FC = () => {
   return (
     <div className="header">
       <div className="header-left">
+        <div className="logo-container">
+          <img src="/logo.svg" alt="Logo" />
+        </div>
         <div className="search-bar">
           <input type="text" placeholder="Search for anything" />
           <button className="search-btn">
@@ -12,7 +15,9 @@ const Header: React.FC = () => {
         </div>
       </div>
       <div className="header-right">
-        <a href="#" className="header-link">Docs</a>
+        <a href="#" className="header-link">
+          Docs
+        </a>
         <div className="notifications">
           <img src="/notification.svg" alt="Notifications" />
         </div>
@@ -20,7 +25,7 @@ const Header: React.FC = () => {
           <img src="/avatar.svg" alt="User" />
           <span>Adedeji</span>
           <span className="dropdown-arrow">
-            <img src="/dropdown.svg"   alt="dropdown" />
+            <img src="/dropdown.svg" alt="dropdown" />
           </span>
         </div>
       </div>
