@@ -148,7 +148,7 @@ $mobile: 480px;
       .logo-container {
         width: 100px;
         height: 70px;
-        display: flex;
+        display: none;
         gap: 10px;
         align-items: center;
         .hamburger {
@@ -165,7 +165,7 @@ $mobile: 480px;
       .search-bar {
         display: flex;
         align-items: center;
-        margin-left: 100px;
+        margin-left: 0;
 
         input {
           width: 250px;
@@ -216,6 +216,29 @@ $mobile: 480px;
             width: 30px;
             height: 30px;
           }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $large-screen) {
+  .header {
+    .header-left {
+      .logo-container {
+        display: flex;
+        align-items: center;
+        img {
+          margin-left: 20px;
+        }
+      }
+      .search-bar {
+        margin-left: 50px;
+        input {
+          width: 250px;
+          height: 40px;
+          padding: 0 10px;
+          font-size: 12px;
         }
       }
     }
@@ -333,6 +356,7 @@ $mobile: 480px;
         img {
           width: 50px;
           height: 70px;
+          margin-left: 0px;
         }
       }
       .search-bar {

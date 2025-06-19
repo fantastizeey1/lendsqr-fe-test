@@ -47,6 +47,10 @@ $mobile: 480px;
   transition: transform 0.3s ease;
   transform: translateX(0);
 
+  .sidebar-close-btn {
+    display: none;
+  }
+
   .sidebar-logo {
     padding: 0 30px;
     margin-bottom: 50px;
