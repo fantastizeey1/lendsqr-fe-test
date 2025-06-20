@@ -46,6 +46,7 @@ $mobile: 480px;
   overflow-y: auto;
   transition: transform 0.3s ease;
   transform: translateX(0);
+  z-index: 99;
 
   .sidebar-close-btn {
     display: none;
@@ -225,15 +226,17 @@ $mobile: 480px;
     }
 
     .sidebar-close-btn {
+      display: block;
       position: absolute;
-      top: 10px;
-      right: 20px;
+      top: 7px;
+      right: 10px;
       font-size: 20px;
       color: $text-primary;
       cursor: pointer;
       font-size: 30px;
       border: none;
       background: none;
+      width: 30px;
     }
 
     .sidebar-logo {
