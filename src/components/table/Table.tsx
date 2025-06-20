@@ -1,7 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-
+import React, { useRef, useEffect, useState } from "react";
 import "./_table.scss";
-import { useNavigate } from "react-router-dom";
 import type { User } from "../../types";
 
 interface FilterState {
@@ -16,25 +14,26 @@ interface FilterState {
 type UsersTableProps = {
   users: User[];
   onUserClick: (user: User) => void;
+  filters: FilterState;
+  setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
+  resetFilters: () => void;
+  allOrganizations: string[];
 };
 
-const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
+const UsersTable: React.FC<UsersTableProps> = ({
+  users,
+  onUserClick,
+  filters,
+  setFilters,
+  resetFilters,
+  allOrganizations,
+}) => {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [activeAction, setActiveAction] = useState<string | null>(null);
-  const [filters, setFilters] = useState<FilterState>({
-    organization: "",
-    username: "",
-    email: "",
-    date: "",
-    phoneNumber: "",
-    status: "",
-  });
-  const navigate = useNavigate();
 
   const filterRef = useRef<HTMLDivElement>(null);
   const actionRef = useRef<HTMLDivElement>(null);
 
-  // Close popovers when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -69,46 +68,13 @@ const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
     setActiveFilter(null);
   };
 
-  const handleUserClick = (user: User) => {
-    navigate(`/users/${user.id}`);
+  const handleFilterChange = (field: keyof FilterState, value: string) => {
+    setFilters((prev) => ({ ...prev, [field]: value }));
   };
 
   const getStatusClass = (status: string) => {
     return `status-${status.toLowerCase()}`;
   };
-
-  const handleFilterChange = (field: keyof FilterState, value: string) => {
-    setFilters((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  };
-
-  const resetFilters = () => {
-    setFilters({
-      organization: "",
-      username: "",
-      email: "",
-      date: "",
-      phoneNumber: "",
-      status: "",
-    });
-    setActiveFilter(null);
-  };
-
-  const handleUserAction = (action: string, userId: string) => {
-    if (action === "view") {
-      navigate(`/users/${userId}`); // ✅ Navigate to user details page
-    } else {
-      console.log(`${action} user:`, userId);
-    }
-    setActiveAction(null);
-  };
-
-  // Get unique organizations for filter dropdown
-  const uniqueOrganizations = Array.from(
-    new Set(users.map((user) => user.orgName))
-  );
 
   const FilterPopover = () => (
     <div className="filter-popover" ref={filterRef}>
@@ -120,7 +86,7 @@ const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
             onChange={(e) => handleFilterChange("organization", e.target.value)}
           >
             <option value="">Select</option>
-            {uniqueOrganizations.map((org) => (
+            {allOrganizations.map((org) => (
               <option key={org} value={org}>
                 {org}
               </option>
@@ -197,44 +163,27 @@ const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
     <div className="action-popover" ref={actionRef}>
       <div
         className="action-item"
-        onClick={() => handleUserAction("view", userId)}
+        onClick={() => onUserClick(users.find((u) => u.id === userId)!)}
       >
         <span className="action-icon">👁</span>
         View Details
       </div>
       <div
         className="action-item"
-        onClick={() => handleUserAction("blacklist", userId)}
+        onClick={() => console.log("Blacklist user:", userId)}
       >
-        <span className="action-icon">👤</span>
+        <span className="action-icon">🚫</span>
         Blacklist User
       </div>
       <div
         className="action-item"
-        onClick={() => handleUserAction("activate", userId)}
+        onClick={() => console.log("Activate user:", userId)}
       >
-        <span className="action-icon">👤</span>
+        <span className="action-icon">✅</span>
         Activate User
       </div>
     </div>
   );
-
-  const filteredUsers = users.filter((user) => {
-    return (
-      (filters.organization === "" ||
-        user.orgName
-          .toLowerCase()
-          .includes(filters.organization.toLowerCase())) &&
-      (filters.username === "" ||
-        user.userName.toLowerCase().includes(filters.username.toLowerCase())) &&
-      (filters.email === "" ||
-        user.email.toLowerCase().includes(filters.email.toLowerCase())) &&
-      (filters.phoneNumber === "" ||
-        user.phoneNumber.includes(filters.phoneNumber)) &&
-      (filters.date === "" || user.dateJoined.startsWith(filters.date)) &&
-      (filters.status === "" || user.status === filters.status)
-    );
-  });
 
   return (
     <div className="users-table">
@@ -305,10 +254,10 @@ const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
           </tr>
         </thead>
         <tbody>
-          {filteredUsers.map((user) => (
+          {users.map((user) => (
             <tr
               key={user.id}
-              onClick={() => handleUserClick(user)}
+              onClick={() => onUserClick(user)}
               className="user-row"
             >
               <td>{user.orgName}</td>
@@ -325,7 +274,6 @@ const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
                   hour12: true,
                 })}
               </td>
-
               <td>
                 <span className={`status ${getStatusClass(user.status)}`}>
                   {user.status}

@@ -721,3 +721,44 @@ export const generateMockUsers = (): User[] => {
 
   return users;
 };
+
+// Add this to the end of your existing mockUsers.ts file
+
+// Function to save users to JSON file
+export const generateAndSaveUsers = (): void => {
+  const users = generateMockUsers();
+  const jsonData = JSON.stringify(users, null, 2);
+
+  // For Node.js environment
+  if (typeof require !== "undefined") {
+    const fs = require("fs");
+    const path = require("path");
+
+    const outputPath = path.join(process.cwd(), "mockUsers.json");
+    fs.writeFileSync(outputPath, jsonData, "utf8");
+    console.log(
+      `✅ Successfully generated ${users.length} users and saved to mockUsers.json`
+    );
+  }
+
+  // For browser environment - download file
+  else if (typeof window !== "undefined") {
+    const blob = new Blob([jsonData], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "mockUsers.json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    console.log(
+      `✅ Successfully generated ${users.length} users and downloaded as mockUsers.json`
+    );
+  }
+};
+
+// If running this file directly in Node.js
+if (typeof require !== "undefined" && require.main === module) {
+  generateAndSaveUsers();
+}

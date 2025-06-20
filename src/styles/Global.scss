@@ -1,0 +1,18 @@
+@use "sass:color";
+@use "./variables" as *;
+@use "./mixins" as *;
+
+// Reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: $background-light;
+  color: $text-primary;
+  line-height: 1;
+  width: 100%;
+}

@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import type { User } from "../../types";
 import "./_userDetails.scss";
 import { useEffect, useState } from "react";
-import { getStoredUsers } from "../../utils/userStorage";
+
 import Loading from "../../components/Loading/Loading";
 import UserNotFound from "../../components/UserNotFound/UserNotFound";
 
@@ -15,7 +15,7 @@ const UserDetailsPage: React.FC = () => {
   useEffect(() => {
     if (!id) return;
 
-    const users = getStoredUsers();
+    const users = JSON.parse(localStorage.getItem("users") || "[]") as User[];
     const foundUser = users.find((u) => u.id === id);
     setUser(foundUser ?? null);
     setLoading(false);

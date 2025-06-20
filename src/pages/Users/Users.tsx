@@ -4,20 +4,55 @@ import { useNavigate } from "react-router-dom";
 import type { User } from "../../types";
 import StatCard from "../../components/statCard/StatCard";
 import "./_users.scss";
-import { getStoredUsers } from "../../utils/userStorage";
+import { useUsers } from "../../hooks/useUsers";
+import UserNotFound from "../../components/UserNotFound/UserNotFound";
+import Loading from "../../components/Loading/Loading";
+
+interface FilterState {
+  organization: string;
+  username: string;
+  email: string;
+  date: string;
+  phoneNumber: string;
+  status: string;
+}
 
 const Users: React.FC = () => {
+  const { users, loading, error } = useUsers();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
-  const [filterStatus] = useState<string>("");
-  const [filterOrg] = useState<string>("");
-  const navigate = useNavigate();
-  const allUsers = getStoredUsers();
+  const [filters, setFilters] = useState<FilterState>({
+    organization: "",
+    username: "",
+    email: "",
+    date: "",
+    phoneNumber: "",
+    status: "",
+  });
 
-  const filteredUsers = allUsers.filter((user) => {
+  const navigate = useNavigate();
+
+  if (loading && users.length === 0) return <Loading />;
+
+  if (error) return <div className="error">Error loading users: {error}</div>;
+  if (!users || users.length === 0) return <UserNotFound />;
+
+  const filteredUsers = users.filter((user: User) => {
     return (
-      (!filterStatus || user.status === filterStatus) &&
-      (!filterOrg || user.orgName === filterOrg)
+      (!filters.organization ||
+        user.orgName
+          .toLowerCase()
+          .includes(filters.organization.toLowerCase())) &&
+      (!filters.username ||
+        user.userName.toLowerCase().includes(filters.username.toLowerCase())) &&
+      (!filters.email ||
+        user.email.toLowerCase().includes(filters.email.toLowerCase())) &&
+      (!filters.phoneNumber ||
+        user.phoneNumber.includes(filters.phoneNumber)) &&
+      (!filters.date ||
+        new Date(user.dateJoined).toISOString().startsWith(filters.date)) &&
+      (!filters.status ||
+        user.status.toLowerCase() === filters.status.toLowerCase())
     );
   });
 
@@ -32,6 +67,23 @@ const Users: React.FC = () => {
     navigate(`/users/${user.id}`);
   };
 
+  const resetFilters = () => {
+    setFilters({
+      organization: "",
+      username: "",
+      email: "",
+      date: "",
+      phoneNumber: "",
+      status: "",
+    });
+    setCurrentPage(1);
+  };
+
+  // Get unique organizations for filter dropdown
+  const allOrganizations = Array.from(
+    new Set(users.map((user) => user.orgName))
+  );
+
   return (
     <div className="users-container">
       <div className="users-page">
@@ -41,32 +93,40 @@ const Users: React.FC = () => {
           <StatCard
             title="USERS"
             icon="/users.svg"
-            value={allUsers.length.toLocaleString()}
+            value={users.length.toLocaleString()}
           />
           <StatCard
             title="ACTIVE USERS"
             icon="/active.svg"
-            value={allUsers
+            value={users
               .filter((u) => u.status === "Active")
               .length.toLocaleString()}
           />
           <StatCard
             title="USERS WITH LOANS"
             icon="/loans.svg"
-            value={Math.floor(allUsers.length * 0.3).toLocaleString()}
+            value={Math.floor(users.length * 0.3).toLocaleString()}
           />
           <StatCard
             title="USERS WITH SAVINGS"
             icon="/savings.svg"
-            value={Math.floor(allUsers.length * 0.8).toLocaleString()}
+            value={Math.floor(users.length * 0.8).toLocaleString()}
           />
         </div>
 
         <div className="users-table-container">
-          <UsersTable users={displayedUsers} onUserClick={handleUserClick} />
+          <UsersTable
+            users={displayedUsers}
+            onUserClick={handleUserClick}
+            filters={filters}
+            setFilters={setFilters}
+            resetFilters={resetFilters}
+            allOrganizations={allOrganizations}
+          />
+
           <div className="pagination">
             <div className="pagination-info">
-              Showing {startIndex + 1} to{" "}
+              Showing {Math.min(startIndex + 1, filteredUsers.length)} to{" "}
               {Math.min(startIndex + itemsPerPage, filteredUsers.length)} of{" "}
               {filteredUsers.length} entries
             </div>
@@ -74,17 +134,19 @@ const Users: React.FC = () => {
               <button
                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
+                aria-label="Previous page"
               >
                 Previous
               </button>
               <span>
-                Page {currentPage} of {totalPages}
+                Page {currentPage} of {totalPages || 1}
               </span>
               <button
                 onClick={() =>
                   setCurrentPage((prev) => Math.min(prev + 1, totalPages))
                 }
                 disabled={currentPage === totalPages}
+                aria-label="Next page"
               >
                 Next
               </button>

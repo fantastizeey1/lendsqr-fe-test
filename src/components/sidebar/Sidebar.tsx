@@ -87,12 +87,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
 
   return (
     <div className={`sidebar ${isOpen ? "open" : ""}`}>
-      <button className="sidebar-close-btn" onClick={onClose}>
-        &times;
-      </button>
-
       <div className="sidebar-logo">
         <img src="/logo.svg" alt="Lendsqr" />
+        <button className="sidebar-close-btn" onClick={onClose}>
+          &times;
+        </button>
       </div>
 
       <div className="sidebar-user">
@@ -109,7 +108,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         {/* Dashboard Link (i.e. Users) */}
         <div
           className={`menu-item dashboard-item `}
-          onClick={() => navigate("/users")}
+          onClick={() => navigate("/dashboard")}
         >
           <span className="menu-icon">
             <img src="/home.svg" alt="Dashboard" />

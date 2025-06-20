@@ -1,48 +1,12 @@
 @use "sass:color";
-
-// Variables
-
-$primary-color: #39cdcc;
-$secondary-color: #213f7d;
-$danger-color: #e4033b;
-$warning-color: #f55f44;
-$success-color: #39cdcc;
-$pending-color: #e9b200;
-$inactive-color: #545f7d;
-$text-primary: #213f7d;
-$text-secondary: #545f7d;
-$background-light: #fbfbfb;
-$border-color: #e6e6e6;
-$white: #ffffff;
-
-// Breakpoints
-$large-screen: 1256px;
-$small-screen: 1024px;
-$tablet: 768px;
-$mobile: 480px;
-
-// Mixins
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@mixin flex-between {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-@mixin card-shadow {
-  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
-}
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
 
 .sidebar {
   max-width: 283px;
   background: $white;
   @include card-shadow;
-  padding: 30px 0;
+
   overflow-y: auto;
   transition: transform 0.3s ease;
   transform: translateX(0);
@@ -53,8 +17,12 @@ $mobile: 480px;
   }
 
   .sidebar-logo {
-    padding: 0 30px;
+    padding: 20px 30px;
     margin-bottom: 50px;
+    position: sticky;
+    height: 60px;
+    top: 0px;
+    background: $white;
 
     img {
       height: 30px;
@@ -153,11 +121,10 @@ $mobile: 480px;
 // large screen (1256px and below)
 @media (max-width: $large-screen) {
   .sidebar {
-    max-width: 250px;
-    padding: 20px 0;
+    max-width: 230px;
 
     .sidebar-logo {
-      padding: 0 20px;
+      padding: 20px;
       margin-bottom: 30px;
 
       img {
@@ -194,9 +161,18 @@ $mobile: 480px;
         }
       }
 
-      .menu-section h4 {
-        font-size: 11px;
-        padding: 0 20px;
+      .menu-section {
+        h4 {
+          font-size: 14px;
+          padding: 0 15px;
+        }
+        .menu-item {
+          padding: 16px 15px;
+          font-size: 14px;
+          .menu-icon {
+            font-size: 14px;
+          }
+        }
       }
 
       .menu-item {
@@ -214,7 +190,6 @@ $mobile: 480px;
 @media (max-width: $small-screen) {
   .sidebar {
     max-width: 200px;
-    padding: 15px 0;
     height: 100vh;
     position: fixed;
     top: 0;
@@ -225,26 +200,26 @@ $mobile: 480px;
       transform: translateX(0);
     }
 
-    .sidebar-close-btn {
-      display: block;
-      position: absolute;
-      top: 7px;
-      right: 10px;
-      font-size: 20px;
-      color: $text-primary;
-      cursor: pointer;
-      font-size: 30px;
-      border: none;
-      background: none;
-      width: 30px;
-    }
-
     .sidebar-logo {
-      padding: 0 15px;
+      padding: 15px 15px;
       margin-bottom: 20px;
 
       img {
         height: 20px;
+      }
+      .sidebar-close-btn {
+        display: block;
+        position: absolute;
+        z-index: 100;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        color: $text-primary;
+        cursor: pointer;
+        font-size: 30px;
+        border: none;
+        background: none;
+        width: 30px;
       }
     }
 
@@ -277,13 +252,13 @@ $mobile: 480px;
         }
       }
 
-      .menu-section h4 {
-        font-size: 12px;
-        padding: 0 15px;
-        .menu-item {
-          padding: 6px 15px;
+      .menu-section {
+        h4 {
           font-size: 10px;
-
+          padding: 0 15px;
+        }
+        .menu-item {
+          font-size: 12px;
           .menu-icon {
             font-size: 12px;
           }
@@ -297,16 +272,6 @@ $mobile: 480px;
 @media (max-width: $tablet) {
   .sidebar {
     max-width: 200px;
-    padding: 10px 0;
-
-    .sidebar-logo {
-      padding: 0 20px;
-      margin-bottom: 30px;
-
-      img {
-        height: 25px;
-      }
-    }
 
     .sidebar-user {
       padding: 0 20px;
@@ -339,13 +304,12 @@ $mobile: 480px;
 
       .menu-section {
         h4 {
-          font-size: 11px;
-          padding: 0 20px;
+          font-size: 10px;
+          padding: 0 15px;
         }
         .menu-item {
-          padding: 8px 20px;
+          padding: 10px 15px;
           font-size: 12px;
-
           .menu-icon {
             font-size: 12px;
           }

@@ -1,36 +1,6 @@
 @use "sass:color";
-
-// Variables
-
-$primary-color: #39cdcc;
-$secondary-color: #213f7d;
-$danger-color: #e4033b;
-$warning-color: #f55f44;
-$success-color: #39cdcc;
-$pending-color: #e9b200;
-$inactive-color: #545f7d;
-$text-primary: #213f7d;
-$text-secondary: #545f7d;
-$background-light: #fbfbfb;
-$border-color: #e6e6e6;
-$white: #ffffff;
-
-// Mixins
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@mixin flex-between {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-@mixin card-shadow {
-  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
-}
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
 
 // Loading Component
 .loading-container {
