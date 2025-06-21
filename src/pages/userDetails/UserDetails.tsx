@@ -3,8 +3,8 @@ import type { User } from "../../types";
 import "./_userDetails.scss";
 import { useEffect, useState } from "react";
 
-import Loading from "../../components/duyu/Loading";
-import UserNotFound from "../../components/dhyui/UserNotFound";
+import Loading from "../../components/loading/Loading";
+import UserNotFound from "../../components/userNotFound/UserNotFound";
 
 const UserDetailsPage: React.FC = () => {
   const { id } = useParams();
