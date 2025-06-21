@@ -1,21 +1,12 @@
 import { useState } from "react";
 import UsersTable from "../../components/table/Table";
 import { useNavigate } from "react-router-dom";
-import type { User } from "../../types";
+import type { FilterState, User } from "../../types";
 import StatCard from "../../components/statCard/StatCard";
 import "./_users.scss";
 import { useUsers } from "../../hooks/useUsers";
 import UserNotFound from "../../components/userNotFound/UserNotFound";
 import Loading from "../../components/loading/Loading";
-
-interface FilterState {
-  organization: string;
-  username: string;
-  email: string;
-  date: string;
-  phoneNumber: string;
-  status: string;
-}
 
 const Users: React.FC = () => {
   const { users, loading, error } = useUsers();

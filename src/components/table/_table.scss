@@ -206,33 +206,38 @@
   .users-table {
     height: auto;
     min-width: 100%;
-
-    thead {
-      tr {
-        th {
-          text-align: left;
-          padding: 16px 0 16px 5px;
-          font-size: 10px;
-          .filter-button {
-            width: 12px;
-            height: 12px;
+    table {
+      thead {
+        tr {
+          th {
+            text-align: left;
+            padding: 16px 0 16px 5px;
+            font-size: 10px;
+            .filter-button {
+              width: 14px;
+              height: 14px;
+              img {
+                width: 12px;
+                height: 12px;
+              }
+            }
+          }
+        }
+      }
+      tbody {
+        tr {
+          td {
+            padding: 16px 10px;
+            font-size: 12px;
           }
         }
       }
     }
-    tbody {
-      tr {
-        td {
-          padding: 16px 10px;
-          font-size: 12px;
-        }
-      }
-    }
-  }
 
-  td {
-    padding: 16px 8px;
-    font-size: 12px;
+    td {
+      padding: 16px 8px;
+      font-size: 12px;
+    }
   }
 }
 // small-screen (1024px) Breakpoint
@@ -241,20 +246,30 @@
     height: auto;
     min-width: 100%;
 
-    thead {
-      tr {
-        th {
-          text-align: left;
-          padding: 16px 5px 16px 5px;
-          font-size: 12px;
+    table {
+      thead {
+        tr {
+          th {
+            text-align: left;
+            padding: 16px 5px 16px 5px;
+            font-size: 12px;
+            .filter-button {
+              width: 10px;
+              height: 10px;
+              img {
+                width: 10px;
+                height: 10px;
+              }
+            }
+          }
         }
       }
-    }
-    tbody {
-      tr {
-        td {
-          padding: 16px 5px;
-          font-size: 12px;
+      tbody {
+        tr {
+          td {
+            padding: 16px 5px;
+            font-size: 12px;
+          }
         }
       }
     }

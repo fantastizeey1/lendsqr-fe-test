@@ -2,7 +2,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import type { User } from "../../types";
 import "./_userDetails.scss";
 import { useEffect, useState } from "react";
-
 import Loading from "../../components/loading/Loading";
 import UserNotFound from "../../components/userNotFound/UserNotFound";
 

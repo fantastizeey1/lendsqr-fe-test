@@ -107,7 +107,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
       <div className="sidebar-menu">
         {/* Dashboard Link (i.e. Users) */}
         <div
-          className={`menu-item dashboard-item `}
+          className={`menu-item ${
+            isActive("dashboard") ? "active" : ""
+          } dashboard-item `}
           onClick={() => navigate("/dashboard")}
         >
           <span className="menu-icon">

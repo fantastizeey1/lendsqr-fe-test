@@ -1,24 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./_table.scss";
-import type { User } from "../../types";
-
-interface FilterState {
-  organization: string;
-  username: string;
-  email: string;
-  date: string;
-  phoneNumber: string;
-  status: string;
-}
-
-type UsersTableProps = {
-  users: User[];
-  onUserClick: (user: User) => void;
-  filters: FilterState;
-  setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
-  resetFilters: () => void;
-  allOrganizations: string[];
-};
+import type { FilterState, UsersTableProps } from "../../types";
 
 const UsersTable: React.FC<UsersTableProps> = ({
   users,

@@ -5,7 +5,7 @@ export interface User {
   email: string;
   phoneNumber: string;
   dateJoined: string;
-  status: 'Active' | 'Inactive' | 'Pending' | 'Blacklisted';
+  status: "Active" | "Inactive" | "Pending" | "Blacklisted";
   profile: {
     firstName: string;
     lastName: string;
@@ -49,3 +49,12 @@ export interface FilterState {
   phoneNumber: string;
   status: string;
 }
+
+export type UsersTableProps = {
+  users: User[];
+  onUserClick: (user: User) => void;
+  filters: FilterState;
+  setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
+  resetFilters: () => void;
+  allOrganizations: string[];
+};
