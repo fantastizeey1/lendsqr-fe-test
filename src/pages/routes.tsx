@@ -2,8 +2,8 @@
 
 import { type RouteObject } from "react-router-dom";
 import Layout from "../components/layout/Layout";
-import Users from "./Users/Users";
-import UserDetailsPage from "./UserDetails/UserDetails";
+import Users from "./sakhj/Users";
+import UserDetailsPage from "./dghkgkyi/UserDetails";
 import LoginRoute from "./auth/LoginRoute";
 import Dashboard from "./dashboard/Dashboard";
 import NotFound from "./notFound/NotFound";

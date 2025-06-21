@@ -110,3 +110,18 @@ describe("UserDetailsPage", () => {
     expect(screen.getByText(/jane doe/i)).toBeInTheDocument(); // Guarantor name
   });
 });
+
+it("shows 'User not found' if localStorage contains invalid JSON", () => {
+  // Corrupt the users data in localStorage
+  localStorage.setItem("users", "{ invalid json");
+
+  render(
+    <MemoryRouter initialEntries={["/users/1"]}>
+      <Routes>
+        <Route path="/users/:id" element={<UserDetailsPage />} />
+      </Routes>
+    </MemoryRouter>
+  );
+
+  expect(screen.getByText(/user not found/i)).toBeInTheDocument();
+});

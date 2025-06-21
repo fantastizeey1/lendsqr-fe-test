@@ -5,8 +5,8 @@ import type { User } from "../../types";
 import StatCard from "../../components/statCard/StatCard";
 import "./_users.scss";
 import { useUsers } from "../../hooks/useUsers";
-import UserNotFound from "../../components/UserNotFound/UserNotFound";
-import Loading from "../../components/Loading/Loading";
+import UserNotFound from "../../components/dhyui/UserNotFound";
+import Loading from "../../components/duyu/Loading";
 
 interface FilterState {
   organization: string;
