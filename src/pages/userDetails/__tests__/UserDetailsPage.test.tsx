@@ -1,9 +1,4 @@
-import {
-  render,
-  screen,
-  waitFor,
-  waitForElementToBeRemoved,
-} from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, it, vi, beforeEach, afterEach, expect } from "vitest";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 import UserDetailsPage from "../UserDetails";
