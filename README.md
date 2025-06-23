@@ -75,21 +75,19 @@ This project fully meets all specified assessment criteria:
 - **Features:** User statistics overview, quick metrics, navigation cards
 - **Design:** Statistical cards layout matching Figma design
 - **Data:** Dynamic user statistics from mock API
-- **Responsive:** Grid layout adapts to screen size
+- **Responsive:** layout adapts to screen size
 
 ### 3. Users Page (`/users`)
 
 - **Features:** Paginated user table, search, filtering, bulk actions
 - **Design:** Comprehensive table view with action dropdowns
-- **Data:** 500+ mock users with pagination (100 per page)
-- **Functionality:** Search by name/email, filter by status, export options
+- **Data:** 500+ mock users with pagination (10 per page)
 
 ### 4. User Details Page (`/users/:id`)
 
 - **Features:** Complete user profile, personal info, guarantor details, bank info
 - **Design:** Detailed profile layout with tabs and sections
 - **Storage:** localStorage integration for user data persistence
-- **Actions:** User activation/blacklisting functionality
 
 ## 🏗 Project Structure
 
@@ -99,9 +97,6 @@ lendsqr-fe-test/
 │   ├── icons/              # Custom SVG icons
 │   └── favicon.ico
 ├── src/
-│   ├── assets/
-│   │   ├── icons/          # Icon assets
-│   │   └── images/         # Image assets
 │   ├── components/
 │   │   ├── header/         # Navigation header
 │   │   ├── sidebar/        # Navigation sidebar
@@ -113,6 +108,7 @@ lendsqr-fe-test/
 │   ├── pages/
 │   │   ├── auth/           # Login page
 │   │   ├── Users/          # Users listing page
+|   |   ├── Dashboard/      # Dashboard Page
 │   │   └── UserDetails/    # User profile page
 │   ├── data/               # Static mock data
 │   ├── utils/              # Utility functions
@@ -234,7 +230,6 @@ npm run test:watch
 - **Integration Tests:** User flow testing across pages
 - **Positive Scenarios:** Valid user interactions and data flow
 - **Negative Scenarios:** Error handling and edge cases
-- **Responsive Testing:** Mobile and desktop compatibility
 
 ### Coverage Targets
 
@@ -253,7 +248,7 @@ npm run build
 ### Deployment Requirements
 
 - **URL Format:** `https://[candidate-name]-lendsqr-fe-test.[platform].com`
-- **Platform:** Vercel (free tier)
+- **Platform:** Vercel
 - **Build Output:** Optimized static files
 - **Environment:** Production-ready configuration
 
@@ -349,21 +344,6 @@ npm run build
 - Advanced analytics dashboard
 - User audit trail and activity logs
 
-## 📈 Performance Metrics
-
-### Lighthouse Scores
-
-- **Performance:** 95+
-- **Accessibility:** 90+
-- **Best Practices:** 95+
-- **SEO:** 90+
-
-### Bundle Analysis
-
-- **Initial Bundle:** < 500KB gzipped
-- **Lazy Loading:** Route-based code splitting
-- **Asset Optimization:** Compressed images and fonts
-
 ## 🔒 Security Considerations
 
 - **Input Validation:** All form inputs validated and sanitized
@@ -376,24 +356,22 @@ npm run build
 
 **Developer Information:**
 
-- **Name:** [Your Full Name]
-- **Email:** [your.email@domain.com]
-- **GitHub:** [@your-username](https://github.com/your-username)
-- **LinkedIn:** [Your LinkedIn Profile]
+- **Name:** [Enitan Ayoola]
+- **Email:** [enitan.ayoola007@gmail.com]
+- **GitHub:** [@Fantastizeey1](https://github.com/Fantastizeey1)
 
 **Project Links:**
 
-- **Repository:** https://github.com/[your-username]/lendsqr-fe-test
-- **Live Demo:** https://[your-name]-lendsqr-fe-test.vercel.app
-- **Design Reference:** [Figma Design Link]
+- **Repository:** https://github.com/fantastizeey1/lendsqr-fe-test
+- **Live Demo:** https://enitan-ayoola-lendsqr-fe-test.vercel.app/
 
 ## 📝 Assessment Submission
 
 **Submission Details:**
 
 - **Submitted:** [Date]
-- **Repository:** lendsqr-fe-test (public)
-- **Deployment:** Vercel with required URL format
+- **Repository:** lendsqr-fe-test (https://github.com/fantastizeey1/lendsqr-fe-test)
+- **Deployment:** https://enitan-ayoola-lendsqr-fe-test.vercel.app/
 - **Documentation:** This comprehensive README
 - **Video Review:** [Loom Video Link - 3 minutes max]
 
