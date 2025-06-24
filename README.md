@@ -142,7 +142,7 @@ lendsqr-fe-test/
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/[your-username]/lendsqr-fe-test.git
+   git clone https://github.com/fantastizeey1/lendsqr-fe-test.git
    cd lendsqr-fe-test
    ```
 
@@ -211,17 +211,10 @@ GET    /dashboard/stats // Dashboard statistics
 
 ## 🧪 Testing
 
-### Test Coverage
-
 ```bash
 # Run all tests
-npm run test
+npx vitest
 
-# Run tests with coverage
-npm run test:coverage
-
-# Run tests in watch mode
-npm run test:watch
 ```
 
 ### Testing Strategy
@@ -247,17 +240,10 @@ npm run build
 
 ### Deployment Requirements
 
-- **URL Format:** `https://[candidate-name]-lendsqr-fe-test.[platform].com`
+- **URL Format:** `https://enitan-ayoola-lendsqr-fe-test.vercel.app/`
 - **Platform:** Vercel
 - **Build Output:** Optimized static files
 - **Environment:** Production-ready configuration
-
-### Performance Optimization
-
-- **Code Splitting:** Route-based lazy loading
-- **Asset Optimization:** Compressed images and minified CSS/JS
-- **Caching:** Browser caching for static assets
-- **Bundle Analysis:** Optimized bundle size
 
 ## 🔧 Key Technical Decisions
 
@@ -293,13 +279,12 @@ npm run build
 
 ### 4. **Mock Data Strategy**
 
-**Decision:** Client-side generation with localStorage persistence
+**Decision:** Hosted API on Netlify for mock data
 **Rationale:**
 
-- No external API dependencies
+- No dependency on third-party APIs
 - Meets assessment requirement for 500+ records
-- Consistent data across sessions
-- Easy to modify and extend
+- Consistent and reliable data source
 
 ## 🎯 Assessment Criteria Met
 
@@ -332,7 +317,6 @@ npm run build
 ### Current Limitations
 
 - Mock authentication (would integrate with real auth service)
-- Client-side data generation (would use real API endpoints)
 - Basic search functionality (could implement fuzzy search)
 
 ### Potential Improvements

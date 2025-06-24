@@ -1,4 +1,4 @@
-// src/routes.ts
+// src/pages/routes.ts
 
 import { type RouteObject } from "react-router-dom";
 import Layout from "../components/layout/Layout";

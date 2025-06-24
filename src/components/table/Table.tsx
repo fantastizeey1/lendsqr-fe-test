@@ -62,8 +62,9 @@ const UsersTable: React.FC<UsersTableProps> = ({
     <div className="filter-popover" ref={filterRef}>
       <div className="filter-form">
         <div className="filter-field">
-          <label>Organization</label>
+          <label htmlFor="org-select">Organization</label>
           <select
+            id="org-select"
             value={filters.organization}
             onChange={(e) => handleFilterChange("organization", e.target.value)}
           >
