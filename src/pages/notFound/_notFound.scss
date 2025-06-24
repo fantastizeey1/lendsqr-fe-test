@@ -51,7 +51,7 @@
       transition: all 0.3s ease;
 
       &:hover {
-        background-color: darken($primary-color, 10%);
+        background: color.adjust($primary-color, $lightness: -10%);
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       }

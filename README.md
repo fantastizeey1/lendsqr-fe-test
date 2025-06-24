@@ -94,8 +94,7 @@ This project fully meets all specified assessment criteria:
 ```
 lendsqr-fe-test/
 ├── public/
-│   ├── icons/              # Custom SVG icons
-│   └── favicon.ico
+│
 ├── src/
 │   ├── components/
 │   │   ├── header/         # Navigation header
@@ -353,11 +352,11 @@ npm run build
 
 **Submission Details:**
 
-- **Submitted:** [Date]
+- **Submitted:** 24 June 2025
 - **Repository:** lendsqr-fe-test (https://github.com/fantastizeey1/lendsqr-fe-test)
 - **Deployment:** https://enitan-ayoola-lendsqr-fe-test.vercel.app/
 - **Documentation:** This comprehensive README
-- **Video Review:** [Loom Video Link - 3 minutes max]
+- **Video Review:** Loom Video Link(https://www.loom.com/share/65b699102c1d400ab95211aab1fbd41e?sid=2e422ae8-0b81-448e-a5f7-32baa32438c0)
 
 **Assessment Compliance:**
 
